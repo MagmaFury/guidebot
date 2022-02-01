@@ -62,9 +62,10 @@ module.exports = async (client, message) => {
 
   if (level < container.levelCache[cmd.conf.permLevel]) {
     if (settings.systemNotice === "true") {
-      return message.channel.send(`You do not have permission to use this command.
-Your permission level is ${level} (${config.permLevels.find(l => l.level === level).name})
-This command requires level ${container.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
+      return message.channel.send(`>>> ⚠ *You do not have permission to use this command.⚠
+👮‍♂️This command requires level of (${cmd.conf.permLevel}).👮‍♂️ 
+🤔Either this server have not set the role to the permission or you don't have the role.🤔
+🛠you can set the role by using the ___~set edit {Role Name} @role.🛠___*`);
     } else {
       return;
     }
