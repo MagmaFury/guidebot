@@ -79,13 +79,13 @@ module.exports = async (client, message) => {
   while (args[0] && args[0][0] === "-") {
     message.flags.push(args.shift().slice(1));
   }
-  // If the command exists, **AND** the user has permission, run it.
-  try {
-    await cmd.run(client, message, args, level);
-    logger.log(`${config.permLevels.find(l => l.level === level).name} ${message.author.id} ran command ${cmd.help.name}`, "cmd");
-  } catch (e) {
-    console.error(e);
-    message.channel.send({ content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\`` })
-      .catch(e => console.error("An error occurred replying on an error", e));
-  }
+// If the command exists, **AND** the user has permission, run it.
+try {
+  await cmd.run(client, message, args, level);
+  logger.log(`${config.permLevels.find(l => l.level === level).name} ${message.author.id} ran command ${cmd.help.name}`, "cmd");
+} catch (e) {
+  console.error(e);
+  message.channel.send({ content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\`` })
+    .catch(e => console.error("An error occurred replying on an error", e));
+}
 };
